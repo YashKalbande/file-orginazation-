@@ -1,3 +1,5 @@
+improt sys
+import os
 import hashlib
 
 from ClassificationOfFile import DefineDirs
