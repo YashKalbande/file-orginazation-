@@ -13,6 +13,7 @@ def bullk_insert_text_file(records):
         cursor.execute("DROP TABLE IF EXISTS metadata_of_text_file")
         cursor.execute("""CREATE TABLE metadata_of_text_file(id SERIAL PRIMARY KEY,
                        text_file_name VARCHAR(255),
+                       date_of_creation VARCHAR(255),
                        hash_value VARCHAR(255),
                        parse_value TEXT, 
                        text_file_size VARCHAR(255))""")
@@ -20,8 +21,8 @@ def bullk_insert_text_file(records):
         connection.commit()
         print("Table created successfully in PostgreSQL ")
 
-        sql_insert_query ="""INSERT INTO metadata_of_text_file (text_file_name,hash_value, parse_value, text_file_size) 
-                            VALUES(%s, %s, %s, %s)"""
+        sql_insert_query ="""INSERT INTO metadata_of_text_file (text_file_name,date_of_creation,hash_value, parse_value, text_file_size) 
+                            VALUES(%s,%s, %s, %s, %s)"""
         # executemany() to insert multiple rows
         result = cursor.executemany(sql_insert_query, records)
         connection.commit()
