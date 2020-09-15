@@ -17,10 +17,11 @@ def tika_parser(filepath):
 
 def extract_metadata(filename):
     # extract metadata
-    global parse_value, text_file_size, hash_value
+    global parse_value, text_file_size, hash_value, date_of_creation
     parse_value = tika_parser(filename)
     text_file_size =os.path.getsize(filename)
     hash_value = md5(filename)
+    date_of_creation = os.path.getctime(path_to_file)
 
 
 # Loop through all jpeg files and create a list for metadatda extraction for each
@@ -29,4 +30,4 @@ def loop_text(filepath):
         parse_value = tika_parser(text_file)
         null_value = extract_metadata(text_file)
         # convert output into a list
-        text_metadata.append((text_file,hash_value, parse_value, text_file_size))
+        text_metadata.append((text_file,date_of_creation, hash_value, parse_value, text_file_size))
