@@ -8,6 +8,7 @@ files_list = glob.glob("*")
 # Creating a set of extension type inside the folder to avoid duplicate entries
 extension_set = set()
 # Add each type of extension to the set
+current_dir = os.getcwd()
 for file in files_list:
     extension = file.split(sep=".")
     try:
@@ -20,6 +21,7 @@ def create_dirs():
     for dir in extension_set:
         try:
             os.makedirs(dir+"_files")
+
         except FileExistsError:
             continue
 
@@ -33,9 +35,6 @@ def arrange():
         except(OSError, IndexError):
             continue
 
-
-create_dirs()
-arrange()
 
 
 
